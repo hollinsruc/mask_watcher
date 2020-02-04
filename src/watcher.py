@@ -1,4 +1,4 @@
-import os, time, json
+import os, time, json, platform
 from selenium import webdriver
 from log.logger import logger as log
 from src.mail import send_mail
@@ -37,8 +37,20 @@ def check_all_shops():
                 check_shop(shop, keywords)
 
 
+# 根据操作系统加载不同的chrome驱动
+def load_browser():
+    system = platform.system()
+    if system =="Windows": #Windows系统
+        driver_file_name = "chromedriver.exe"
+    elif system =="Darwin": #MacOS系统
+        driver_file_name = "chromedriver_mac64"
+    else: #Linux系统
+        driver_file_name = "chromedriver_linux64"
+
+    return webdriver.Chrome(os.path.join(os.path.dirname(__file__), "chrome_drivers", driver_file_name))
+
 if __name__ == "__main__":
     while True:
-        browser = webdriver.Chrome(os.path.join(os.path.dirname(__file__), "chromedriver.exe"))
+        browser = load_browser()
         check_all_shops()
         browser.quit()
