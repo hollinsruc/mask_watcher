@@ -1,3 +1,6 @@
+import sys
+sys.path.append("..")
+
 import requests
 from config import wechat_config
 

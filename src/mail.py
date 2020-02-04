@@ -1,9 +1,12 @@
+import sys
+sys.path.append("..")
+
 import smtplib, traceback
 from email.mime.text import MIMEText
 from email.header import Header
 
 from config.mail_config import mail_config
-from log.logger import logger as log
+from logger import logger as log
 
 def send_mail(subject, content, receiver):
     message = MIMEText(content, 'plain', 'utf-8')

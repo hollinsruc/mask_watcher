@@ -1,9 +1,12 @@
+import sys
+sys.path.append("..")
+
 import os, time, json, platform
 from selenium import webdriver
-from log.logger import logger as log
-from src.mail import send_mail
+from logger import logger as log
+from mail import send_mail
 from config.mail_config import mail_config
-from src.wechat_msg import send_msg
+from wechat_msg import send_msg
 
 browser = None
 
@@ -19,12 +22,12 @@ def check_shop(url, keywords):
         log.warning("FIND!!!")
         log.warning(url)
         log.warning(keywords)
-        # send_mail(
-        #     "发现口罩有货!!",
-        #     url,
-        #     mail_config.get("to")
-        # )
-        send_msg(url)
+        send_mail(
+             "发现口罩有货!!",
+             url,
+             mail_config.get("to")
+         )
+        #send_msg(url)
 
 
 def check_all_shops():

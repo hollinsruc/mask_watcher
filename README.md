@@ -4,4 +4,4 @@
 # 使用方法
 
 1. 填写`conifg/mail_config.example.py`, 并重命名该文件, 去掉example
-2. 运行`src/watcher.py`
+2. 运行`watcher.py`
